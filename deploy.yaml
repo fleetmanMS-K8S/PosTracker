@@ -64,6 +64,19 @@
               host: "{{item.public_ip}}"
               state: started
       with_items: "{{ec2.instances}}"
+      
+    - name: Gather facts about the new blue server for allocating docker host
+      ec2_instance_info:
+        filters:
+           "tag:Deploy": Blue
+           "tag:Name": Position_Tracker
+           instance-state-name: running
+        region: us-east-1
+      register: new_server
+      
+    - name: Setup variables needed later
+      set_fact: 
+         local_ip: "{{ new_server.instances[0].public_ip }}"
 
 
 - hosts: ec2hosts
@@ -139,17 +152,10 @@
 
     become: yes
 
-  - name: Gather facts about the new blue server for allocating docker host
-    ec2_instance_info:
-       filters:
-          "tag:Deploy": Blue
-          "tag:Name": Position_Tracker
-          instance-state-name: running
-       region: us-east-1
-    register: new_server
+  
 
   - name: Run the Docker container
-    command: docker run -d -e "eureka.instance.hostname=\"{{ new_server.instances[0].public_ip }}\"" --restart always --publish 8888:8888 --name bb postra:1.0
+    command: docker run -d -e "eureka.instance.hostname=\"{{ local_ip }}\"" --restart always --publish 8888:8888 --name bb postra:1.0
     become: yes
 
 
