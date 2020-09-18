@@ -149,7 +149,7 @@
   
 
   - name: Run the Docker container
-    command: docker run -d -e "eureka.instance.hostname=\"{{ hostvars['varhost']['local_ip'] }}\"" --restart always --publish 8888:8888 --name bb postra:1.0
+    command: docker run -d -e "eureka.instance.hostname={{ hostvars['varhost']['local_ip'] }}" --restart always --publish 8888:8888 --name bb postra:1.0
     become: yes
 
 
