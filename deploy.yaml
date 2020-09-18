@@ -198,7 +198,7 @@
   - name: Remove Blue Tag
     ec2_tag:
        region: "{{ region }}"
-       resource: "{{ new_server.instances[0].id }}"
+       resource: "{{ new_server.instances[0].instance_id }}"
        tags:
           Deploy: Blue
        state: absent
