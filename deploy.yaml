@@ -76,7 +76,7 @@
       
     - name: Setup variables needed later
       set_fact: 
-         local_ip: "{{ new_server.instances[0].public_ip }}"
+         local_ip: "{{ new_server.instances[0].network_interfaces.public_ip }}"
 
 
 - hosts: ec2hosts
