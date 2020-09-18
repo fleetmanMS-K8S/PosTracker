@@ -67,7 +67,8 @@
       
       
     - name: Setup variables needed later
-      set_fact: 
+      add_host: 
+         hostname: varhost
          local_ip: "{{ item.public_ip }}"
       with_items: "{{ec2.instances}}"
 
@@ -148,7 +149,7 @@
   
 
   - name: Run the Docker container
-    command: docker run -d -e "eureka.instance.hostname=\"{{ local_ip }}\"" --restart always --publish 8888:8888 --name bb postra:1.0
+    command: docker run -d -e "eureka.instance.hostname=\"{{ hostvars['varhost']['local_ip'] }}\"" --restart always --publish 8888:8888 --name bb postra:1.0
     become: yes
 
 
