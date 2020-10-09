@@ -47,6 +47,7 @@ public class Dataprocessing {
         PosEnt posent = new PosEnt();
         posent.setVehiclename(vehiclename);
         posent.setLat(new BigDecimal(obj.get("lat").toString()));
+        System.out.println(new BigDecimal(obj.get("lat").toString()));
         posent.setLongitude(new BigDecimal(obj.get("long").toString()));
         posrepo.save(posent);
    //     System.out.println("The size of the queue is "  + temqueue.size());
@@ -78,8 +79,8 @@ public class Dataprocessing {
    //         return vehicle;
    //     }
 
-        PosEnt data = posrepo.poslatest();
-        return data.getVehiclename();
+        String data = posrepo.vehlatest();
+        return data;
 
 
 

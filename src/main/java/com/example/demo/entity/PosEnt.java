@@ -20,7 +20,11 @@ public class PosEnt implements Serializable {
     @GeneratedValue
     private int id;
     private String vehiclename;
+
+    @Column(name="lat", columnDefinition="Decimal(19,7)")
     private BigDecimal lat;
+
+    @Column(name="longitude", columnDefinition="Decimal(19,7)")
     private BigDecimal longitude;
 
 
