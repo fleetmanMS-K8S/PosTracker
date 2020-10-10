@@ -6,7 +6,7 @@ pipeline {
      
 
      SERVICE_NAME = "PosTracker"
-     REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-postracker:${BUILD_ID}"
+     REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/postracker:${BUILD_ID}"
    }
 
    stages {
