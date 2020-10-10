@@ -25,7 +25,7 @@ public class controller {
 	public ResponseEntity<String> publish(@PathVariable("message") String message) {
 		
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body("HELLO BODY");
+			return ResponseEntity.status(HttpStatus.OK).body("HELLO BODYY");
 		}
 		
 		//Define Custom exception later
